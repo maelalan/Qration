@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DISP — Infographie Réglementaire Européenne</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #05080F;
+    --surface: #0C1220;
+    --surface2: #111827;
+    --border: rgba(255,255,255,0.07);
+    --accent-eu: #0066CC;
+    --accent-dga: #1E88E5;
+    --accent-gaia: #00BFA5;
+    --accent-disp: #F59E0B;
+    --accent-gold: #D4A843;
+    --text: #F0F4FF;
+    --text-muted: #7A8AA0;
+    --text-dim: #3D5068;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘DM Sans’, sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* Background grid */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image:
+linear-gradient(rgba(0,102,204,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,102,204,0.04) 1px, transparent 1px);
+background-size: 60px 60px;
+pointer-events: none;
+z-index: 0;
+}
+
+.wrapper {
+position: relative;
+z-index: 1;
+max-width: 1100px;
+margin: 0 auto;
+padding: 60px 40px 80px;
+}
+
+/* ── HEADER ── */
+.header {
+display: grid;
+grid-template-columns: 1fr auto;
+align-items: start;
+gap: 40px;
+margin-bottom: 64px;
+padding-bottom: 40px;
+border-bottom: 1px solid var(–border);
+}
+
+.eu-stars {
+font-size: 11px;
+letter-spacing: 6px;
+color: var(–accent-gold);
+text-transform: uppercase;
+margin-bottom: 16px;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.eu-stars::before {
+content: ‘★ ★ ★ ★ ★’;
+}
+
+h1 {
+font-family: ‘DM Serif Display’, serif;
+font-size: clamp(36px, 5vw, 56px);
+line-height: 1.05;
+color: var(–text);
+margin-bottom: 12px;
+}
+
+h1 span {
+color: var(–accent-dga);
+font-style: italic;
+}
+
+.header-sub {
+font-size: 15px;
+color: var(–text-muted);
+max-width: 480px;
+line-height: 1.6;
+font-weight: 300;
+}
+
+.badge-dga {
+background: rgba(30,136,229,0.12);
+border: 1px solid rgba(30,136,229,0.3);
+border-radius: 12px;
+padding: 20px 24px;
+text-align: center;
+flex-shrink: 0;
+min-width: 180px;
+}
+.badge-dga .reg {
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+color: var(–accent-dga);
+text-transform: uppercase;
+letter-spacing: 2px;
+margin-bottom: 8px;
+}
+.badge-dga .year {
+font-family: ‘DM Serif Display’, serif;
+font-size: 38px;
+color: var(–text);
+line-height: 1;
+margin-bottom: 6px;
+}
+.badge-dga .label {
+font-size: 11px;
+color: var(–text-muted);
+font-weight: 300;
+}
+
+/* ── DEFINITION BLOCK ── */
+.definition {
+display: grid;
+grid-template-columns: 4px 1fr;
+gap: 24px;
+margin-bottom: 56px;
+align-items: start;
+}
+.def-bar {
+background: linear-gradient(180deg, var(–accent-disp), var(–accent-dga));
+border-radius: 2px;
+height: 100%;
+min-height: 80px;
+}
+.def-content {}
+.def-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: var(–accent-disp);
+margin-bottom: 12px;
+}
+.def-text {
+font-size: 17px;
+line-height: 1.65;
+color: #CBD5E1;
+font-weight: 300;
+}
+.def-text strong {
+color: var(–text);
+font-weight: 500;
+}
+
+/* ── ROLES ── */
+.section-title {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: var(–text-dim);
+margin-bottom: 24px;
+display: flex;
+align-items: center;
+gap: 16px;
+}
+.section-title::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: var(–border);
+}
+
+.roles-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2px;
+margin-bottom: 56px;
+border-radius: 16px;
+overflow: hidden;
+}
+
+.role-card {
+background: var(–surface);
+padding: 28px 24px;
+position: relative;
+transition: background 0.2s;
+}
+.role-card:hover { background: var(–surface2); }
+
+.role-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+}
+.role-card.holder::before { background: #6366F1; }
+.role-card.disp::before { background: var(–accent-disp); }
+.role-card.user::before { background: var(–accent-gaia); }
+
+.role-icon {
+width: 40px;
+height: 40px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+margin-bottom: 16px;
+}
+.holder .role-icon { background: rgba(99,102,241,0.15); }
+.disp .role-icon { background: rgba(245,158,11,0.15); }
+.user .role-icon { background: rgba(0,191,165,0.15); }
+
+.role-name {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–text-muted);
+margin-bottom: 8px;
+}
+.role-title {
+font-size: 16px;
+font-weight: 600;
+margin-bottom: 10px;
+color: var(–text);
+}
+.role-desc {
+font-size: 13px;
+color: var(–text-muted);
+line-height: 1.6;
+font-weight: 300;
+}
+
+/* Arrow between roles */
+.roles-flow {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0;
+margin-bottom: 20px;
+padding: 0 8px;
+}
+
+/* ── DGA OBLIGATIONS ── */
+.obligations-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
+margin-bottom: 56px;
+}
+
+.obligation {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 20px 22px;
+display: flex;
+gap: 16px;
+align-items: flex-start;
+transition: border-color 0.2s, transform 0.2s;
+}
+.obligation:hover {
+border-color: rgba(30,136,229,0.3);
+transform: translateY(-2px);
+}
+
+.ob-number {
+font-family: ‘DM Mono’, monospace;
+font-size: 22px;
+font-weight: 500;
+color: rgba(30,136,229,0.3);
+line-height: 1;
+flex-shrink: 0;
+padding-top: 2px;
+}
+.ob-title {
+font-size: 13px;
+font-weight: 600;
+color: var(–text);
+margin-bottom: 5px;
+}
+.ob-desc {
+font-size: 12px;
+color: var(–text-muted);
+line-height: 1.55;
+font-weight: 300;
+}
+
+/* ── REGULATORY LANDSCAPE ── */
+.reg-table {
+width: 100%;
+border-collapse: separate;
+border-spacing: 0 6px;
+margin-bottom: 56px;
+}
+.reg-table thead th {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+color: var(–text-dim);
+text-align: left;
+padding: 0 20px 12px;
+border-bottom: 1px solid var(–border);
+}
+.reg-table tbody tr {
+background: var(–surface);
+transition: background 0.15s;
+}
+.reg-table tbody tr:hover { background: var(–surface2); }
+
+.reg-table tbody td {
+padding: 16px 20px;
+font-size: 13px;
+vertical-align: middle;
+}
+.reg-table tbody td:first-child {
+border-radius: 10px 0 0 10px;
+}
+.reg-table tbody td:last-child {
+border-radius: 0 10px 10px 0;
+color: var(–text-muted);
+font-weight: 300;
+line-height: 1.5;
+}
+
+.reg-name {
+font-family: ‘DM Mono’, monospace;
+font-size: 12px;
+font-weight: 500;
+color: var(–accent-dga);
+white-space: nowrap;
+}
+.reg-full { font-size: 12px; color: var(–text-muted); margin-top: 3px; font-weight: 300; }
+
+.reg-tag {
+display: inline-block;
+padding: 3px 10px;
+border-radius: 20px;
+font-size: 11px;
+font-weight: 500;
+white-space: nowrap;
+}
+.tag-fondateur { background: rgba(30,136,229,0.15); color: var(–accent-dga); }
+.tag-acces { background: rgba(99,102,241,0.15); color: #818CF8; }
+.tag-protection { background: rgba(239,68,68,0.12); color: #F87171; }
+.tag-ia { background: rgba(139,92,246,0.15); color: #A78BFA; }
+.tag-cyber { background: rgba(245,158,11,0.15); color: var(–accent-disp); }
+.tag-identite { background: rgba(0,191,165,0.15); color: var(–accent-gaia); }
+
+/* ── GAIA-X SECTION ── */
+.gaia-section {
+background: linear-gradient(135deg, rgba(0,191,165,0.05) 0%, rgba(0,102,204,0.05) 100%);
+border: 1px solid rgba(0,191,165,0.15);
+border-radius: 20px;
+padding: 40px;
+margin-bottom: 56px;
+position: relative;
+overflow: hidden;
+}
+.gaia-section::before {
+content: ‘’;
+position: absolute;
+top: -60px; right: -60px;
+width: 240px; height: 240px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(0,191,165,0.08) 0%, transparent 70%);
+pointer-events: none;
+}
+
+.gaia-header {
+display: flex;
+align-items: center;
+gap: 16px;
+margin-bottom: 32px;
+}
+.gaia-logo {
+width: 48px; height: 48px;
+border-radius: 12px;
+background: rgba(0,191,165,0.15);
+border: 1px solid rgba(0,191,165,0.3);
+display: flex; align-items: center; justify-content: center;
+font-size: 22px;
+flex-shrink: 0;
+}
+.gaia-header h2 {
+font-family: ‘DM Serif Display’, serif;
+font-size: 28px;
+color: var(–text);
+}
+.gaia-header .sub {
+font-size: 13px;
+color: var(–text-muted);
+font-weight: 300;
+}
+
+.gaia-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+margin-bottom: 32px;
+}
+.gaia-card {
+background: rgba(0,0,0,0.3);
+border: 1px solid rgba(0,191,165,0.12);
+border-radius: 12px;
+padding: 20px;
+}
+.gaia-card-icon { font-size: 20px; margin-bottom: 12px; }
+.gaia-card-title {
+font-size: 13px;
+font-weight: 600;
+color: var(–text);
+margin-bottom: 8px;
+}
+.gaia-card-desc {
+font-size: 12px;
+color: var(–text-muted);
+line-height: 1.6;
+font-weight: 300;
+}
+
+/* ── SYNERGY DIAGRAM ── */
+.synergy {
+display: grid;
+grid-template-columns: 1fr auto 1fr;
+gap: 24px;
+align-items: center;
+margin-bottom: 56px;
+}
+
+.synergy-block {
+border-radius: 16px;
+padding: 28px 24px;
+}
+.synergy-block.dga {
+background: rgba(30,136,229,0.08);
+border: 1px solid rgba(30,136,229,0.2);
+}
+.synergy-block.gaia {
+background: rgba(0,191,165,0.08);
+border: 1px solid rgba(0,191,165,0.2);
+}
+
+.synergy-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+margin-bottom: 12px;
+}
+.dga .synergy-label { color: var(–accent-dga); }
+.gaia .synergy-label { color: var(–accent-gaia); }
+
+.synergy-title {
+font-family: ‘DM Serif Display’, serif;
+font-size: 20px;
+margin-bottom: 16px;
+color: var(–text);
+}
+.synergy-list {
+list-style: none;
+}
+.synergy-list li {
+font-size: 12px;
+color: var(–text-muted);
+padding: 6px 0;
+border-bottom: 1px solid rgba(255,255,255,0.04);
+display: flex;
+gap: 10px;
+font-weight: 300;
+line-height: 1.5;
+}
+.synergy-list li::before { color: var(–accent-disp); flex-shrink: 0; }
+.dga .synergy-list li::before { content: ‘—’; color: var(–accent-dga); }
+.gaia .synergy-list li::before { content: ‘—’; color: var(–accent-gaia); }
+
+.synergy-center {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 8px;
+}
+.synergy-plus {
+width: 56px; height: 56px;
+border-radius: 50%;
+background: rgba(245,158,11,0.12);
+border: 2px solid rgba(245,158,11,0.3);
+display: flex; align-items: center; justify-content: center;
+font-size: 24px;
+color: var(–accent-disp);
+font-weight: 300;
+}
+.synergy-result {
+background: rgba(245,158,11,0.1);
+border: 1px solid rgba(245,158,11,0.25);
+border-radius: 10px;
+padding: 10px 14px;
+text-align: center;
+font-size: 11px;
+font-weight: 500;
+color: var(–accent-disp);
+line-height: 1.4;
+}
+
+/* ── DATA SPACES ── */
+.spaces-grid {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+gap: 8px;
+margin-bottom: 56px;
+}
+.space-chip {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 10px;
+padding: 16px 12px;
+text-align: center;
+transition: all 0.2s;
+cursor: default;
+}
+.space-chip:hover {
+border-color: rgba(0,191,165,0.3);
+transform: translateY(-3px);
+}
+.space-emoji { font-size: 20px; margin-bottom: 8px; }
+.space-name {
+font-size: 11px;
+font-weight: 600;
+color: var(–text);
+margin-bottom: 4px;
+}
+.space-sector {
+font-size: 10px;
+color: var(–text-muted);
+font-weight: 300;
+}
+
+/* ── FOOTER ── */
+.footer {
+border-top: 1px solid var(–border);
+padding-top: 32px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: gap;
+gap: 16px;
+}
+.footer-text {
+font-size: 11px;
+color: var(–text-dim);
+font-family: ‘DM Mono’, monospace;
+}
+.footer-tags {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+}
+.ftag {
+font-size: 10px;
+font-family: ‘DM Mono’, monospace;
+color: var(–text-dim);
+border: 1px solid var(–border);
+border-radius: 4px;
+padding: 3px 8px;
+}
+
+/* animations */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.animate {
+animation: fadeUp 0.5s ease forwards;
+opacity: 0;
+}
+.d1 { animation-delay: 0.1s; }
+.d2 { animation-delay: 0.2s; }
+.d3 { animation-delay: 0.3s; }
+.d4 { animation-delay: 0.4s; }
+.d5 { animation-delay: 0.5s; }
+.d6 { animation-delay: 0.6s; }
+
+/* Responsive */
+@media (max-width: 700px) {
+.wrapper { padding: 32px 20px 60px; }
+.header { grid-template-columns: 1fr; }
+.roles-grid { grid-template-columns: 1fr; }
+.obligations-grid { grid-template-columns: 1fr; }
+.gaia-grid { grid-template-columns: 1fr; }
+.synergy { grid-template-columns: 1fr; }
+.synergy-center { flex-direction: row; }
+.spaces-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+
+  <div class="header animate d1">
+    <div>
+      <div class="eu-stars">Union Européenne &nbsp;·&nbsp; Marché Unique des Données</div>
+      <h1>DISP<br><span>Data Intermediation</span><br>Service Providers</h1>
+      <p class="header-sub">Cadre réglementaire européen du partage de données & articulation avec l'écosystème Gaia-X</p>
+    </div>
+    <div class="badge-dga">
+      <div class="reg">Règlement UE</div>
+      <div class="year">2022<br>/868</div>
+      <div class="label">Data Governance Act<br>En vigueur sept. 2023</div>
+    </div>
+  </div>
+
+  <!-- DEFINITION -->
+
+  <div class="definition animate d2">
+    <div class="def-bar"></div>
+    <div class="def-content">
+      <div class="def-label">Définition</div>
+      <p class="def-text">
+        Un DISP est une entité qui agit en tant qu'<strong>intermédiaire neutre</strong> entre des <strong>détenteurs de données</strong> (<em>data holders</em>) et des <strong>utilisateurs de données</strong> (<em>data users</em>), facilitant l'échange ou la mise en commun de données <strong>sans les exploiter à son propre compte</strong>. Il peut prendre la forme d'une place de marché de données, d'un gestionnaire d'espace de données sectoriel ou d'une plateforme de data sharing B2B / B2C.
+      </p>
+    </div>
+  </div>
+
+  <!-- RÔLES -->
+
+  <div class="section-title animate d2">Acteurs & flux</div>
+  <div class="roles-grid animate d3">
+    <div class="role-card holder">
+      <div class="role-icon">🏦</div>
+      <div class="role-name">Data Holder</div>
+      <div class="role-title">Détenteur de données</div>
+      <p class="role-desc">Entité (entreprise, administation, individu) disposant de données et souhaitant les mettre à disposition sous conditions maîtrisées.</p>
+    </div>
+    <div class="role-card disp">
+      <div class="role-icon">⚡</div>
+      <div class="role-name">DISP</div>
+      <div class="role-title">Intermédiaire neutre</div>
+      <p class="role-desc">Orchestre le partage, applique les règles d'usage, garantit la neutralité. Enregistré auprès d'une autorité compétente nationale.</p>
+    </div>
+    <div class="role-card user">
+      <div class="role-icon">🔬</div>
+      <div class="role-name">Data User</div>
+      <div class="role-title">Utilisateur de données</div>
+      <p class="role-desc">Entité accédant aux données pour produire des services, analyses, innovations — selon les droits accordés par le holder.</p>
+    </div>
+  </div>
+
+  <!-- OBLIGATIONS DGA -->
+
+  <div class="section-title animate d3">Obligations clés — Data Governance Act</div>
+  <div class="obligations-grid animate d3">
+    <div class="obligation">
+      <div class="ob-number">01</div>
+      <div>
+        <div class="ob-title">Neutralité stricte</div>
+        <p class="ob-desc">Le DISP ne peut pas utiliser les données échangées à ses propres fins. Interdiction de monétisation parallèle ou de profilage.</p>
+      </div>
+    </div>
+    <div class="obligation">
+      <div class="ob-number">02</div>
+      <div>
+        <div class="ob-title">Non-discrimination</div>
+        <p class="ob-desc">Conditions d'accès identiques pour tous les participants. Pas de traitement préférentiel entre data holders ou users.</p>
+      </div>
+    </div>
+    <div class="obligation">
+      <div class="ob-number">03</div>
+      <div>
+        <div class="ob-title">Transparence</div>
+        <p class="ob-desc">Publication obligatoire des conditions tarifaires, des finalités, des mécanismes de sécurité et des algorithmes de mise en relation.</p>
+      </div>
+    </div>
+    <div class="obligation">
+      <div class="ob-number">04</div>
+      <div>
+        <div class="ob-title">Séparation des activités</div>
+        <p class="ob-desc">Interdiction de cumuler le rôle d'intermédiaire avec celui d'utilisateur de données dans des marchés connexes.</p>
+      </div>
+    </div>
+    <div class="obligation">
+      <div class="ob-number">05</div>
+      <div>
+        <div class="ob-title">Interopérabilité</div>
+        <p class="ob-desc">Formats ouverts obligatoires. Portabilité des données garantie. Standards communs pour faciliter le changement de prestataire.</p>
+      </div>
+    </div>
+    <div class="obligation">
+      <div class="ob-number">06</div>
+      <div>
+        <div class="ob-title">Enregistrement obligatoire</div>
+        <p class="ob-desc">Notification à une autorité nationale compétente. Inscription au registre européen centralisé de la Commission, valable UE entière.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANDSCAPE RÉGLEMENTAIRE -->
+
+  <div class="section-title animate d4">Écosystème réglementaire</div>
+  <table class="reg-table animate d4">
+    <thead>
+      <tr>
+        <th>Texte</th>
+        <th>Catégorie</th>
+        <th>Rôle pour les DISPs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="reg-name">DGA — Rèq. 2022/868</div>
+          <div class="reg-full">Data Governance Act</div>
+        </td>
+        <td><span class="reg-tag tag-fondateur">Fondateur</span></td>
+        <td>Texte constitutif : définit les DISPs, leurs obligations, la procédure d'enregistrement et le registre européen.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="reg-name">Data Act 2023</div>
+          <div class="reg-full">Rèq. 2023/2854</div>
+        </td>
+        <td><span class="reg-tag tag-acces">Accès aux données</span></td>
+        <td>Droits d'accès aux données IoT, partage B2B/B2G obligatoire dans certains secteurs — flux à orchestrer par les DISPs.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="reg-name">RGPD</div>
+          <div class="reg-full">Rèq. 2016/679</div>
+        </td>
+        <td><span class="reg-tag tag-protection">Protection données</span></td>
+        <td>S'applique dès que des données personnelles transitent via un DISP. Bases légales, consentement, transferts internationaux.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="reg-name">AI Act 2024</div>
+          <div class="reg-full">Rèq. 2024/1689</div>
+        </td>
+        <td><span class="reg-tag tag-ia">Intelligence Artificielle</span></td>
+        <td>Gouvernance des données d'entraînement IA. Pertinent si le DISP alimente des systèmes d'IA à haut risque.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="reg-name">NIS2 / DORA</div>
+          <div class="reg-full">Dir. 2022/2555 · Rèq. 2022/2554</div>
+        </td>
+        <td><span class="reg-tag tag-cyber">Cybersécurité</span></td>
+        <td>Obligations de cybersécurité pour les infrastructures de données critiques et le secteur financier.</td>
+      </tr>
+      <tr>
+        <td>
+          <div class="reg-name">eIDAS 2</div>
+          <div class="reg-full">Rèq. 2024/1183</div>
+        </td>
+        <td><span class="reg-tag tag-identite">Identité numérique</span></td>
+        <td>Cadre d'identité numérique pour authentifier les participants aux échanges de données via les DISPs.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- GAIA-X -->
+
+  <div class="gaia-section animate d4">
+    <div class="gaia-header">
+      <div class="gaia-logo">🌐</div>
+      <div>
+        <h2>Gaia-X</h2>
+        <div class="sub">Infrastructure fédérée de données souveraine — AISBL Bruxelles</div>
+      </div>
+    </div>
+
+```
+<div class="section-title" style="color: rgba(0,191,165,0.4);">Piliers de l'écosystème Gaia-X</div>
+<div class="gaia-grid">
+  <div class="gaia-card">
+    <div class="gaia-card-icon">🛡️</div>
+    <div class="gaia-card-title">Trust Framework</div>
+    <p class="gaia-card-desc">Ensemble de règles, de standards et de mécanismes de certification garantissant la conformité européenne des services.</p>
+  </div>
+  <div class="gaia-card">
+    <div class="gaia-card-icon">🔗</div>
+    <div class="gaia-card-title">Connecteurs souverains</div>
+    <p class="gaia-card-desc">Eclipse Dataspace Connector (EDC) — protocoles d'interopérabilité permettant l'échange de données entre espaces de données.</p>
+  </div>
+  <div class="gaia-card">
+    <div class="gaia-card-icon">📋</div>
+    <div class="gaia-card-title">Verifiable Credentials</div>
+    <p class="gaia-card-desc">Attestations numériques (W3C VC) pour identifier et certifier les participants — entreprises, données, services.</p>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- SYNERGY -->
+
+  <div class="section-title animate d5">Complémentarité DGA × Gaia-X</div>
+  <div class="synergy animate d5">
+    <div class="synergy-block dga">
+      <div class="synergy-label">Data Governance Act</div>
+      <div class="synergy-title">Confiance juridique</div>
+      <ul class="synergy-list">
+        <li>Obligations légales des DISPs</li>
+        <li>Enregistrement & supervision</li>
+        <li>Droits des participants</li>
+        <li>Sanctions & enforcement</li>
+        <li>Label de confiance officiel</li>
+      </ul>
+    </div>
+    <div class="synergy-center">
+      <div class="synergy-plus">+</div>
+      <div class="synergy-result">DISP<br>opérationnel<br>& certifié</div>
+    </div>
+    <div class="synergy-block gaia">
+      <div class="synergy-label">Gaia-X</div>
+      <div class="synergy-title">Confiance technique</div>
+      <ul class="synergy-list">
+        <li>Trust Framework & standards</li>
+        <li>Connecteurs interopérables</li>
+        <li>Catalogues de services</li>
+        <li>Certification Gaia-X Label</li>
+        <li>Nœuds infra souverains</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DATA SPACES -->
+
+  <div class="section-title animate d5">Data Spaces sectoriels — terrain d'action des DISPs</div>
+  <div class="spaces-grid animate d5">
+    <div class="space-chip">
+      <div class="space-emoji">🚗</div>
+      <div class="space-name">Catena-X</div>
+      <div class="space-sector">Automobile</div>
+    </div>
+    <div class="space-chip">
+      <div class="space-emoji">🌾</div>
+      <div class="space-name">Agri-DX</div>
+      <div class="space-sector">Agriculture</div>
+    </div>
+    <div class="space-chip">
+      <div class="space-emoji">🏥</div>
+      <div class="space-name">Health-X</div>
+      <div class="space-sector">Santé</div>
+    </div>
+    <div class="space-chip">
+      <div class="space-emoji">⚡</div>
+      <div class="space-name">Pontus-X</div>
+      <div class="space-sector">Énergie</div>
+    </div>
+    <div class="space-chip">
+      <div class="space-emoji">🏭</div>
+      <div class="space-name">Manufacturing</div>
+      <div class="space-sector">Industrie</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+
+  <div class="footer animate d6">
+    <div class="footer-text">Sources : DGA 2022/868 · Data Act 2023/2854 · gaia-x.eu · dssc.eu</div>
+    <div class="footer-tags">
+      <span class="ftag">DGA</span>
+      <span class="ftag">Data Act</span>
+      <span class="ftag">Gaia-X</span>
+      <span class="ftag">DSSC</span>
+      <span class="ftag">IDSA</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
